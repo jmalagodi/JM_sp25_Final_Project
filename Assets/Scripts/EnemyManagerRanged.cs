@@ -48,7 +48,7 @@ public class EnemyAggroRanged : MonoBehaviour
       
 
         //Debug.Log((Vector2.Distance(transform.position, player.transform.position)));
-        if (Vector2.Distance(transform.position, player.transform.position) < aggroRange && playerInSight)
+        if (Vector2.Distance(transform.position, player.transform.position) < aggroRange)
         {
             patrol = false;
         }

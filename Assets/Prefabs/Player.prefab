@@ -102,8 +102,11 @@ MonoBehaviour:
   horizontalInput: 0
   speed: 10
   rb: {fileID: 0}
-  jumpForce: 16.4
+  jumpForce: 18.1
   isOnGround: 0
+  attacking: 0
+  attackWait: 0
+  touchDown: 0
 --- !u!54 &8522225708656572097
 Rigidbody:
   m_ObjectHideFlags: 0
