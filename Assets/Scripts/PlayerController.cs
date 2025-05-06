@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
     
@@ -14,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public bool attacking;
     public bool attackWait;
     public bool touchDown;
+    public GameObject gameOverText;
+    public bool alive;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,25 +24,29 @@ public class PlayerController : MonoBehaviour
         attackWait = false;
         touchDown = false;
         gameObject.SetActive(true);
+        transform.localScale = new Vector3(0.6296f, 0.5988f, 1f);
+        gameOverText.SetActive(false);
+        alive = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
-
-        
+        if (alive)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
+        } 
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && alive)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
 
         }
-        if (!attackWait && touchDown && !isOnGround)
+        if (!attackWait && touchDown && !isOnGround && alive)
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -49,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        if (!attackWait && touchDown && isOnGround)
+        if (!attackWait && touchDown && isOnGround && alive)
         {
             if (Input.GetKeyDown(KeyCode.V))
             {
@@ -102,7 +109,8 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy") && !attacking)
         {
-            gameObject.SetActive(false);
+            StartCoroutine(gameOver());           
+            
         }
         if (collision.gameObject.CompareTag("Enemy") && attacking)
         {
@@ -117,12 +125,25 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Projectile") && !attacking)
         {
-            gameObject.SetActive(false);
+            StartCoroutine(gameOver());           
+            
+
         }
         if (other.gameObject.CompareTag("KillBox"))
         {
-            gameObject.SetActive(false);
+            StartCoroutine(gameOver());
+            
         }
+    }
+    IEnumerator gameOver()
+    {
+        alive = false;
+        gameOverText.SetActive(true);
+        transform.localScale = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(2f);
+        gameOverText.SetActive(false);
+        alive = true;
+        SceneManager.LoadScene(1);
     }
 
 }
