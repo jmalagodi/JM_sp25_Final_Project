@@ -14498,16 +14498,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7149311132685603927, guid: 6dc97078469221c478de9436b5d27c39, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3757644571655490217, guid: 6dc97078469221c478de9436b5d27c39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2010062473}
   m_SourcePrefab: {fileID: 100100000, guid: 6dc97078469221c478de9436b5d27c39, type: 3}
 --- !u!4 &2010062468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7491552156281637965, guid: 6dc97078469221c478de9436b5d27c39, type: 3}
   m_PrefabInstance: {fileID: 2010062467}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2010062473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471184075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92dd1eb4205a4814c885dcd923f21734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalInput: 0
+  speed: 10
+  rb: {fileID: 0}
+  jumpForce: 18
+  isOnGround: 0
+  attacking: 0
+  attackWait: 0
+  touchDown: 0
+  gameOverText: {fileID: 1680426202}
+  gameOverEnemyText: {fileID: 0}
+  alive: 0
 --- !u!1001 &2018932038
 PrefabInstance:
   m_ObjectHideFlags: 0
